@@ -13,7 +13,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="DATABASE"
             android:value="ouijulawyerbeta.db" />
@@ -26,7 +25,6 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="ouijulawyer.project.soma.ouijulawyerbeta" />
-
 
         <activity android:name=".View.SplashActivity">
             <intent-filter>
@@ -47,7 +45,8 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.ContractDetailActivity" />
-        <activity android:name=".View.MyInfoActivity"></activity>
+        <activity android:name=".View.MyInfoActivity" />
+        <activity android:name=".View.NewContractActivity"></activity>
     </application>
 
 </manifest>

@@ -187,6 +187,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {//계약서작성
+            Intent intent = new Intent(MainActivity.this,NewContractActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {//친구초대
 
