@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <item android:state_pressed="true" android:color="#ccc" />
+
+    <!--   눌린 후 버튼이미지 파일명을 써준다.-->
+
+    <!-- pressed -->
+
+
+
+    <item android:color="#ccc" />
+
+    <!--  눌리기 전 버튼이미지 파일명을 써준다..-->
+
+    <!-- default -->
+
+</selector>
