@@ -180,13 +180,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_camera) { //메인화면
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_gallery) { //내정보등록
+            Intent intent = new Intent(MainActivity.this,MyInfoActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_slideshow) {//계약서작성
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {//친구초대
 
         }
 

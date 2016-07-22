@@ -16,12 +16,13 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class ContractDetailActivity extends AppCompatActivity {
 
 
     private ImageView contractImage;
-   // private PhotoViewAttacher mAttacher;
+    private PhotoViewAttacher mAttacher;
 
 
 //    private KakaoLink kakaoLink;
@@ -36,8 +37,8 @@ public class ContractDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contract_detail);
         contractImage = (ImageView)findViewById(R.id.img_contract);
-      //  mAttacher = new PhotoViewAttacher(contractImage);
-      //  mAttacher.setScale(mAttacher.getMediumScale());
+         mAttacher = new PhotoViewAttacher(contractImage);
+         mAttacher.setScale(mAttacher.getMediumScale());
 
         btn_kakao = (ImageView)findViewById(R.id.btn_kakao);
         btn_kakao.setClickable(false);
