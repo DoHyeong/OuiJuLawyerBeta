@@ -224,7 +224,6 @@ public class NewContractActivity extends AppCompatActivity {
                                         Intent intent = new Intent(NewContractActivity.this,MainActivity.class);
                                         startActivity(intent);
                                         finish();
-
                                     }
 
                                     @Override
@@ -269,15 +268,15 @@ public class NewContractActivity extends AppCompatActivity {
             myinfo =  Select.from(MyInfo.class)
                     .where(Condition.prop("session").eq(OuijuGlobal.session))
                     .list().get(0);
+            if(myinfo.account == null){
+                goSubmitMyInfo();
+            }
+
         }catch (SQLiteException e){//정보등록부터 하시오
-            Toast.makeText(NewContractActivity.this,"계약서 작성을 위해선 내 정보 등록이 필수입니다.",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(NewContractActivity.this,MyInfoActivity.class);
-            startActivity(intent);
-            finish();
+            goSubmitMyInfo();
 
-
-
-
+        }catch (IndexOutOfBoundsException e){
+            goSubmitMyInfo();
         }catch (Exception e){
 
         }
@@ -297,6 +296,13 @@ public class NewContractActivity extends AppCompatActivity {
         text_my_name2.setText(myinfo.name);
 
 
+    }
+
+    void goSubmitMyInfo(){
+        Toast.makeText(NewContractActivity.this,"계약서 작성을 위해선 내 정보 등록이 필수입니다.",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(NewContractActivity.this,MyInfoActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
