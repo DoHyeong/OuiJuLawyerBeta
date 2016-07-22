@@ -27,8 +27,8 @@ public class SplashActivity extends AppCompatActivity {
                     permissions,101); // define this constant yourself
         }else{
 
-          //  Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
-           // startActivity(intent);
+            Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -41,8 +41,8 @@ public class SplashActivity extends AppCompatActivity {
                         101); // define this constant yourself
             }else{
 
-                // Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
-                //startActivity(intent);
+                 Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
