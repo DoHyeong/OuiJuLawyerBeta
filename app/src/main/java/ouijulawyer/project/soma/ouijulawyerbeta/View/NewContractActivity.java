@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -192,6 +193,15 @@ public class NewContractActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(!((isNull(balju_name) && isNull(balju_birth)) && (isNull(balju_phone)) && (isNull(project_name) && isNull(project_des)) && (isNull(contract_date) && isNull(contract_to))
+                        && (isNull(contract_amount) && isNull(contract_amount)) && (isNull(contract_chacksu) && isNull(bosu_date)) && (isNull(bosu_des) && isNull(byebye_des)) && (isNull(contract_plus)
+                        && isNull(balju_sangho)))) {
+                    return;
+
+                }
+
+
                 loading.show();
                 try{
                     // NaverInfoService service = retrofit.create(NaverInfoService.class);
@@ -296,6 +306,16 @@ public class NewContractActivity extends AppCompatActivity {
         text_my_name2.setText(myinfo.name);
 
 
+    }
+
+
+    boolean isNull(EditText text){
+        if(TextUtils.isEmpty(text.getText()) || text.getText().equals(" ")){
+            text.setError("필수입력값 입니다");
+            return false;
+        }else{
+            return true;
+        }
     }
 
     void goSubmitMyInfo(){
