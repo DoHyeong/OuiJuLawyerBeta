@@ -1,13 +1,17 @@
 package ouijulawyer.project.soma.ouijulawyerbeta.View;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.ExpandedMenuView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +24,7 @@ import com.squareup.picasso.Target;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import ouijulawyer.project.soma.ouijulawyerbeta.R;
 import ouijulawyer.project.soma.ouijulawyerbeta.Structure.GetContractImage;
@@ -45,6 +50,7 @@ public class ContractDetailActivity extends AppCompatActivity {
     ImageView btn_kakao;
 
     Button btn_save;
+    ImageView btn_sms;
 
     Context context;
 
@@ -59,33 +65,68 @@ public class ContractDetailActivity extends AppCompatActivity {
          mAttacher = new PhotoViewAttacher(contractImage);
          mAttacher.setScale(mAttacher.getMediumScale());
 
-        btn_kakao = (ImageView)findViewById(R.id.btn_kakao);
-        btn_kakao.setClickable(false);
 
         btn_save = (Button)findViewById(R.id.btn_save);
+        btn_sms = (ImageView)findViewById(R.id.btn_sms);
 
-        btn_kakao.setOnClickListener(new View.OnClickListener(
 
-        ) {
+
+        btn_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                try {
-//                    kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
-//                    kakaoTalkLinkMessageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//                try {
-//                    kakaoTalkLinkMessageBuilder.addText("외주변호사에서 작성된 계약서 입니다");
-//                    kakaoTalkLinkMessageBuilder.addImage(nowURL, 496, 293);
-//                    kakaoTalkLinkMessageBuilder.addWebLink("이미지크게 보기", nowURL);
-//
-//                    kakaoLink.sendMessage(kakaoTalkLinkMessageBuilder.build(), view.getContext());
-//                } catch (KakaoParameterException e) {
-//                    e.printStackTrace();
-//                }
+
+                Picasso.with(context).load(nowURL).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        File dir =
+                                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+                        // 폴더가 있는지 확인 후 없으면 새로 만들어준다.
+                        if(!dir.exists())
+                            dir.mkdirs();
+
+                        FileOutputStream fos;
+                        try {
+
+                            long now = System.currentTimeMillis();
+                            Bitmap contractimg = bitmap;
+                            fos = new FileOutputStream(new File(dir, "/" + now + ".png"));
+                            contractimg.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                            fos.close();
+                            String current = dir + "/" + now + ".png";
+
+                            File path = new File(current);
+                            Uri uri = Uri.fromFile(path);
+
+                            Intent intent = new Intent(Intent.ACTION_SEND); //전송 메소드를 호출합니다. Intent.ACTION_SEND
+                            intent.setType("image/*"); //jpg 이미지를 공유 하기 위해 Type을 정의합니다.
+                            intent.putExtra(Intent.EXTRA_STREAM, uri); //사진의 Uri를 가지고 옵니다.
+                            startActivity(Intent.createChooser(intent, "선택해주세요")); //Activity를 이용하여 호출 합니다.
+
+                            context.deleteFile(current);
+
+                        }catch (Exception e){
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+
+                });
             }
+
+
+
+
         });
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +154,6 @@ public class ContractDetailActivity extends AppCompatActivity {
         service.listRepos("GetContractImage", csid, new Callback<GetContractImageRepo>() {
             @Override
             public void success(GetContractImageRepo getContractImageRepo, Response response) {
-                btn_kakao.setClickable(true);
 
                 String image = getContractImageRepo.file;
                 nowURL = "http://ouijulawyer.azurewebsites.net/contract/"+image+".png";
