@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity
     private  LoadingDialog loading;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         String aa =  OuijuGlobal.name;
         text1.setText("외주왕 "+aa+"님 안녕하세요");
 
-        getMyContractJson();
+        //getMyContractJson();
 
         re_comehere.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,10 +106,14 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        getMyContractJson();
+
 
     }
+
+
     void getMyContractJson(){
-        try{
+
             // NaverInfoService service = retrofit.create(NaverInfoService.class);
             RestAdapter retrofit = new RestAdapter.Builder()
                     .setEndpoint("http://ouijulawyer.azurewebsites.net")
@@ -117,56 +123,61 @@ public class MainActivity extends AppCompatActivity
 
             Log.d("aaaa",OuijuGlobal.session);
 
-            service.listRepos("GetMyContract", OuijuGlobal.session, new Callback<List<GetMyContractRepo>>() {
 
 
-                @Override
-                public void success(final List<GetMyContractRepo> getMyContractRepos, Response response) {
-                    loadingInfo.setText("");
-                    GetMyContractRepo test = getMyContractRepos.get(0);
+                service.listRepos("GetMyContract", OuijuGlobal.session, new Callback<List<GetMyContractRepo>>() {
 
-                    contractGallery.setAdapter(new ContractGalleryAdapter(getApplicationContext(),getMyContractRepos));
 
-                    List<GetMyContractRepo> temp = getMyContractRepos;
-                    int count = temp.size();
-                    giyodo.setText(Integer.toString(count));
-                    giyodo.setTextSize(35);
-                    giyodo.setTextColor(Color.MAGENTA);
-                    for(int i= 0; i<count; i++){
-                        csid.add(temp.get(i).csid);
-                        //  imageList.add(repo.get(i).file);
+                    @Override
+                    public void success(final List<GetMyContractRepo> getMyContractRepos, Response response) {
+                        try {
+                        loadingInfo.setText("");
+                        GetMyContractRepo test = getMyContractRepos.get(0);
 
-                    }
+                        contractGallery.setAdapter(new ContractGalleryAdapter(getApplicationContext(), getMyContractRepos));
 
-                    contractGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Toast.makeText(MainActivity.this,csid.get(position),Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this,ContractDetailActivity.class);
-                            intent.putExtra("csid",csid.get(position));
-                            startActivity(intent);
+                        List<GetMyContractRepo> temp = getMyContractRepos;
+                        int count = temp.size();
+                        giyodo.setText(Integer.toString(count));
+                        giyodo.setTextSize(35);
+                        giyodo.setTextColor(Color.MAGENTA);
+                        for (int i = 0; i < count; i++) {
+                            csid.add(temp.get(i).csid);
+                            //  imageList.add(repo.get(i).file);
 
                         }
-                    });
+
+                        contractGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Toast.makeText(MainActivity.this, csid.get(position), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, ContractDetailActivity.class);
+                                intent.putExtra("csid", csid.get(position));
+                                startActivity(intent);
+
+                            }
+                        });
 
 
-                    Log.d("test1111",test.toString());
-                }
+                        Log.d("test1111", test.toString());
+                        }catch(Exception e){
+                            Log.d("asdf","119");
+                          //  getMyContractJson();
+                        }
+                    }
 
-                @Override
-                public void failure(RetrofitError error) {
+                    @Override
+                    public void failure(RetrofitError error) {
 
-                    Log.d("test",error.toString());
+                        Log.d("test", error.toString());
 
-                }
-            });
+                    }
+                });
+
+     }
 
 
-        }catch (Exception e){
-            Log.d("aaaa3",e.toString());
 
-        }
-    }
 
     @Override
     public void onBackPressed() {
@@ -240,7 +251,7 @@ public class MainActivity extends AppCompatActivity
 
                 FileOutputStream fos;
                 try {
-
+                    
                     long now = System.currentTimeMillis();
                     Bitmap contractimg = bitmap;
                     fos = new FileOutputStream(new File(dir, "/comehere.png"));

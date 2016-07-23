@@ -59,7 +59,6 @@ public NaverClass(String type,String token){
         OuijuGlobal.session = id;
         OuijuGlobal.type  = "N";
 
-
         }
 
 public String naverLogin(){
