@@ -98,7 +98,8 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="(클릭하여 약관보기)"
-                            android:id="@+id/textView3" />
+                            android:id="@+id/textView3"
+                            android:textColor="#000000" />
                     </LinearLayout>
 
                 </LinearLayout>

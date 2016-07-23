@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity
 
                 FileOutputStream fos;
                 try {
-                    
+
                     long now = System.currentTimeMillis();
                     Bitmap contractimg = bitmap;
                     fos = new FileOutputStream(new File(dir, "/comehere.png"));

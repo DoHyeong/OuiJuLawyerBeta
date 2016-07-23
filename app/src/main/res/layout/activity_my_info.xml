@@ -7,7 +7,7 @@
     android:paddingLeft="0dp"
     android:paddingTop="0dp"
     android:paddingRight="0dp"
-    tools:context="ouijulawyer.project.soma.ouijulawyer.View.MyInfoActivity"
+    tools:context="ouijulawyer.project.soma.ouijulawyerbeta.View.MyInfoActivity"
     android:background="#ffffff">
 
     <LinearLayout
@@ -24,10 +24,35 @@
             android:layout_height="0dp"
             android:layout_weight="30">
 
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/imageView4" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fec82f">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/anyoung"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_weight="70" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="계약서 작성에 필요한 개인정보를 입력해주세요"
+                    android:id="@+id/textView"
+                    android:layout_weight="30"
+                    android:textColor="#6e6d6d"
+
+                    />
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout

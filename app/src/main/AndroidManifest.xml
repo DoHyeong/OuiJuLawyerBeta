@@ -26,14 +26,20 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="ouijulawyer.project.soma.ouijulawyerbeta" />
 
-        <activity android:name=".View.SplashActivity">
+        <activity android:name=".View.SplashActivity"
+                  android:theme="@style/Theme.Design.NoActionBar"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.LoginActivity" />
+        <activity android:name=".View.LoginActivity"
+                  android:theme="@style/Theme.Design.NoActionBar"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -42,11 +48,22 @@
             android:label="OAuth2.0 In-app" />
         <activity
             android:name=".View.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="외주변호사-메인화면"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".View.ContractDetailActivity" />
-        <activity android:name=".View.MyInfoActivity" />
-        <activity android:name=".View.NewContractActivity"></activity>
+        <activity android:name=".View.ContractDetailActivity"
+                  android:label="외주변호사-상세보기"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".View.MyInfoActivity"
+                  android:label="외주변호사-내정보"
+            android:screenOrientation="portrait"
+
+            />
+        <activity android:name=".View.NewContractActivity"
+                  android:label="외주변호사-계약서작성"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>
