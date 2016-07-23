@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -129,6 +130,10 @@ public class MyInfoActivity extends AppCompatActivity {
         btn_edit.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
+                if(!((isNull(edit_name) && isNull(edit_accout))&&(isNull(edit_bank) && isNull(edit_birth)) &&(isNull(edit_phone)))){
+                    return;
+                }
+
                 loading.show();
                 MyInfo myinfo3;
                 //MyInfo.deleteAll(MyInfo.class);
@@ -185,5 +190,15 @@ public class MyInfoActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+
+    boolean isNull(EditText text){
+        if(TextUtils.isEmpty(text.getText()) || text.getText().equals(" ")){
+            text.setError("필수입력값 입니다");
+            return false;
+        }else{
+            return true;
+        }
     }
 }
