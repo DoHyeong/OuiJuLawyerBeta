@@ -59,8 +59,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Large Text"
-                            android:id="@+id/textView8"
+                            android:text="로딩중"
+                            android:id="@+id/text_giyodo"
                             android:layout_alignParentTop="false"
                             android:layout_alignParentLeft="false"
                             android:layout_alignParentStart="false"
@@ -70,11 +70,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="나의 외주랭킹"
+                            android:text="나의 외주 기여도"
                             android:id="@+id/textView10"
-                            android:layout_below="@+id/textView8"
-                            android:layout_alignLeft="@+id/textView8"
-                            android:layout_alignStart="@+id/textView8"
+                            android:layout_below="@+id/text_giyodo"
+                            android:layout_alignLeft="@+id/text_giyodo"
+                            android:layout_alignStart="@+id/text_giyodo"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true" />
                     </RelativeLayout>
@@ -82,24 +82,27 @@
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="5">
+                        android:layout_weight="5"
+                        android:clickable="true"
+                        android:id="@+id/relative_comehere">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Large Text"
+                            android:text="여기 클릭하여 공유하기"
                             android:id="@+id/textView14"
                             android:layout_alignParentTop="false"
                             android:layout_alignParentLeft="false"
                             android:layout_alignParentStart="false"
-                            android:layout_centerInParent="true" />
+                            android:layout_centerInParent="true"
+                            android:gravity="center" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="친구초대지수"
+                            android:text="외주변호사 소개하기"
                             android:id="@+id/textView12"
                             android:layout_alignParentLeft="false"
                             android:layout_alignParentTop="true"

@@ -1,7 +1,12 @@
 package ouijulawyer.project.soma.ouijulawyerbeta.View;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -16,9 +21,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import org.w3c.dom.Text;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +57,12 @@ public class MainActivity extends AppCompatActivity
     private ContractGallery contractGallery;
 
     private TextView loadingInfo;
+    private TextView giyodo;
+
+    private RelativeLayout re_comehere;
+
+    private  LoadingDialog loading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +71,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,6 +84,11 @@ public class MainActivity extends AppCompatActivity
         //////
         contractGallery = (ContractGallery)findViewById(R.id.gallery);
         loadingInfo = (TextView)findViewById(R.id.loading_info_text);
+        giyodo = (TextView)findViewById(R.id.text_giyodo);
+        re_comehere = (RelativeLayout)findViewById(R.id.relative_comehere);
+
+        loading = new LoadingDialog(MainActivity.this, "로딩중", "Azure Japan West서버와 통신중입니다.");
+
 
 
         TextView text1 = (TextView)findViewById(R.id.textView4);
@@ -80,8 +97,15 @@ public class MainActivity extends AppCompatActivity
 
         getMyContractJson();
 
-    }
+        re_comehere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mkComeHere();
+            }
+        });
 
+
+    }
     void getMyContractJson(){
         try{
             // NaverInfoService service = retrofit.create(NaverInfoService.class);
@@ -105,7 +129,9 @@ public class MainActivity extends AppCompatActivity
 
                     List<GetMyContractRepo> temp = getMyContractRepos;
                     int count = temp.size();
-
+                    giyodo.setText(Integer.toString(count));
+                    giyodo.setTextSize(35);
+                    giyodo.setTextColor(Color.MAGENTA);
                     for(int i= 0; i<count; i++){
                         csid.add(temp.get(i).csid);
                         //  imageList.add(repo.get(i).file);
@@ -152,29 +178,29 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//git
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -192,10 +218,65 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {//친구초대
 
+            mkComeHere();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    void mkComeHere(){
+        loading.show();
+        Picasso.with(MainActivity.this).load("http://ouijulawyer.azurewebsites.net/comehere.png").into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                File dir =
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+                // 폴더가 있는지 확인 후 없으면 새로 만들어준다.
+                if(!dir.exists())
+                    dir.mkdirs();
+
+                FileOutputStream fos;
+                try {
+
+                    long now = System.currentTimeMillis();
+                    Bitmap contractimg = bitmap;
+                    fos = new FileOutputStream(new File(dir, "/comehere.png"));
+                    contractimg.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                    fos.close();
+                    String current = dir + "/comehere.png";
+
+                    File path = new File(current);
+                    Uri uri = Uri.fromFile(path);
+
+                    Intent intent = new Intent(Intent.ACTION_SEND); //전송 메소드를 호출합니다. Intent.ACTION_SEND
+                    intent.setType("image/*"); //jpg 이미지를 공유 하기 위해 Type을 정의합니다.
+                    intent.putExtra(Intent.EXTRA_STREAM, uri); //사진의 Uri를 가지고 옵니다.
+                    loading.dismiss();
+                    startActivity(Intent.createChooser(intent, "선택해주세요")); //Activity를 이용하여 호출 합니다.
+
+                    deleteFile(current);
+
+                }catch (Exception e){
+
+                }
+
+
+            }
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+            }
+
+        });
+
     }
 }
