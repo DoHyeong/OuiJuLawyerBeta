@@ -48,7 +48,6 @@ public class MyInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_info);
         SugarContext.init(MyInfoActivity.this);
 
-
         loading = new LoadingDialog(MyInfoActivity.this, "로딩중", "Azure Japan West서버와 통신중입니다.");
 
         edit_name = (EditText)findViewById(R.id.user_name);
@@ -62,18 +61,15 @@ public class MyInfoActivity extends AppCompatActivity {
 
         String session = OuijuGlobal.session;
 
-
         List<MyInfo> myinfo2;
         intent = new Intent(MyInfoActivity.this,MainActivity.class);
         try{
             MyInfo myinfo  = new MyInfo();
 
-
             myinfo = MyInfo.findWithQuery(MyInfo.class, "select * from my_info where session = ?", OuijuGlobal.session).get(0);
             myinfo =  Select.from(MyInfo.class)
                     .where(Condition.prop("session").eq(OuijuGlobal.session))
                     .list().get(0);
-
 
             loading = new LoadingDialog(MyInfoActivity.this, "로딩중", "Azure Japan West서버와 통신중입니다.");
 

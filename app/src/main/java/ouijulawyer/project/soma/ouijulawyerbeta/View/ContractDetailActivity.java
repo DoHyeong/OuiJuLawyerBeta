@@ -62,8 +62,8 @@ public class ContractDetailActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         contractImage = (ImageView)findViewById(R.id.img_contract);
-         mAttacher = new PhotoViewAttacher(contractImage);
-         mAttacher.setScale(mAttacher.getMediumScale());
+        mAttacher = new PhotoViewAttacher(contractImage);
+        mAttacher.setScale(mAttacher.getMediumScale());
 
 
         btn_save = (Button)findViewById(R.id.btn_save);
@@ -178,8 +178,6 @@ public class ContractDetailActivity extends AppCompatActivity {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 
-
-
                 File dir =
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
                 // 폴더가 있는지 확인 후 없으면 새로 만들어준다.
@@ -221,12 +219,6 @@ public class ContractDetailActivity extends AppCompatActivity {
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }
-
-
-
-
-
-
 
 
 }

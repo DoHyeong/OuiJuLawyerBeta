@@ -30,9 +30,6 @@ public class ContractGallery extends Gallery {
         setSpacing(-40);
     }
 
-
-    // Toast toast = new Toast(getContext(),"asdf",Toast.LENGTH_SHORT);
-
     protected boolean getChildStaticTransformation(View child, Transformation t) {
         final int mCenter = (getWidth() - getPaddingLeft() - getPaddingRight()) / 2 + getPaddingLeft();
         final int childCenter = child.getLeft() + child.getWidth() / 2;

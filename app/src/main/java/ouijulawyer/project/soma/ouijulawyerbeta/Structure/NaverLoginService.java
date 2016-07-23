@@ -9,6 +9,5 @@ import retrofit.http.Query;
  */
 public interface NaverLoginService {
     @GET("/api/{api_name}.php")
-        // void listRepos(@Path("api_name") String auth, @Query("type") String type, @Query("token") String token, Callback<NaverInfoRepo>value);
     NaverLoginRepo listRepos(@Path("api_name") String api_name, @Query("user_id") String user_id);
 }

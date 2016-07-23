@@ -5,9 +5,7 @@ package ouijulawyer.project.soma.ouijulawyerbeta.Structure;
  */
 public class SignImageUploadRepo
 {
-
     public String success;
     public String message;
-
 
 }

@@ -24,10 +24,6 @@ public class LoadingDialog extends Dialog {
         super.onCreate(savedInstanceState);
 
 
-
-
-
-
         // 다이얼로그 외부 화면 흐리게 표현
         WindowManager.LayoutParams lpWindow = new WindowManager.LayoutParams();
         lpWindow.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;

@@ -28,16 +28,12 @@ public class LoginActivity extends AppCompatActivity {
     private static String OAUTH_CLIENT_SECRET = "brg0_9ncW6";
     private static String OAUTH_CLIENT_NAME = "외주변호사";
 
-
     private static OAuthLogin mOAuthLoginModule;
     private static Context mContext;
 
     private RelativeLayout policy_box;
 
-
-
     private OAuthLoginButton mOAuthLoginButton;
-
 
     ImageView naverLogin;
 
@@ -74,8 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://ouijulawyer.azurewebsites.net/policy.html"));
                 startActivity(browserIntent);
 
-
-
             }
         });
 
@@ -107,8 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
 
-
-                //Toast.makeText()
 
             } else {
                 String errorCode = mOAuthLoginModule.getLastErrorCode(mContext).getCode();

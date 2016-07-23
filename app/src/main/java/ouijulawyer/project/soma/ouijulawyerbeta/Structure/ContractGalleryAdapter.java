@@ -33,9 +33,9 @@ public class ContractGalleryAdapter extends BaseAdapter {
 
 
          public ContractGalleryAdapter(Context c, List<GetMyContractRepo> repo) {
-             mContext = c;
-             mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           // mImageID.
+            mContext = c;
+            mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             count = repo.size();
 
             for(int i= 0; i<count; i++){
@@ -63,7 +63,8 @@ public class ContractGalleryAdapter extends BaseAdapter {
                View mview = convertView;
 
               if (mview == null) {
-                      mview = mInflater.inflate(R.layout.contract_gallery, null);
+
+                  mview = mInflater.inflate(R.layout.contract_gallery, null);
               }
 
              image = (ImageView) mview.findViewById(R.id.image);

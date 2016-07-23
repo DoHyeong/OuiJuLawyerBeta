@@ -178,36 +178,6 @@ public class SignDialog extends Dialog {
 
         touchpad.addView(new MyView(getContext()));
 
-
-
-
-        // touchpad.addView(new MyView(getContext()));
-        //touchpad.addView(new MyView(getContext()));
-
-
-
-
-
-
-
-//        touchpad.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                switch( event.getAction() ) {
-//                    case MotionEvent.ACTION_MOVE:
-//
-//
-//                       // points.add(new Point(event.getX(), event.getY(), true));
-//                        //invalidate();
-//                        break;
-//                    case MotionEvent.ACTION_UP:
-//                    case MotionEvent.ACTION_DOWN:
-//                        //points.add(new Point(event.getX(), event.getY(), false));
-//                }
-//                return true;
-//            }
-//        });
-
         // 제목과 내용을 생성자에서 셋팅한다.
         mTitleView.setText(mTitle);
         mContentView.setText(mContent);

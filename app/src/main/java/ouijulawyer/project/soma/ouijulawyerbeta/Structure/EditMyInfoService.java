@@ -12,8 +12,6 @@ import retrofit.http.Query;
  */
 public interface EditMyInfoService {
     @GET("/api/{api_name}.php")
-        // void listRepos(@Path("api_name") String auth, @Query("type") String type, @Query("token") String token, Callback<NaverInfoRepo>value);
     void listRepos(@Path("api_name") String api_name, @Query("session") String session, @Query("name") String name, @Query("phone") String phone, @Query("birth") String birth, @Query("bank") String bank, @Query("account") String accout, Callback<EditMyInfoRepo>value);
-
 
 }

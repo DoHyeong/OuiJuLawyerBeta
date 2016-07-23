@@ -96,10 +96,7 @@ public class NewContractActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_contract);
         SugarContext.init(NewContractActivity.this);
 
-
         loading = new LoadingDialog(NewContractActivity.this, "로딩중", "Azure Japan West서버와 통신중입니다.");
-
-
 
         my_name = (TextView)findViewById(R.id.my_name_text);
         my_birth = (TextView)findViewById(R.id.my_birth_text);
@@ -152,9 +149,6 @@ public class NewContractActivity extends AppCompatActivity {
                 my_signDialog.show();
             }
         });
-
-
-
 
 
         btn_your.setOnClickListener(new View.OnClickListener(){
@@ -245,10 +239,7 @@ public class NewContractActivity extends AppCompatActivity {
 
                             }else{//실패
 
-
                                 Log.d("aaaa999","Aa");
-
-
 
                             }
 
@@ -300,8 +291,6 @@ public class NewContractActivity extends AppCompatActivity {
         my_phone.setText(myinfo.phone);
         my_accout.setText(myinfo.bank + "," + myinfo.account);
 
-
-
         ///////////
         text_my_name2.setText(myinfo.name);
 
@@ -331,14 +320,10 @@ public class NewContractActivity extends AppCompatActivity {
         // 2. 그림을 Bitmap 으로 저장.
         // 3. 캐쉬를 막는다.
 
-
         LinearLayout touchpad = (LinearLayout)dialog.findViewById(R.id.touchpad);
         touchpad.setDrawingCacheEnabled(true);
         Bitmap screenshot = Bitmap.createBitmap(touchpad.getDrawingCache());
         touchpad.setDrawingCacheEnabled(false);
-
-
-
 
         File dir =
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);

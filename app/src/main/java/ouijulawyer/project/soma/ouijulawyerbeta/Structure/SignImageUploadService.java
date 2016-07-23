@@ -15,5 +15,4 @@ public interface SignImageUploadService {
     @Multipart
     @POST("/api/{api_name}.php")
     void listRepos(@Path("api_name") String api_name, @Part("imsi_id") String imsi_id, @Part("mysign") TypedFile mysign, @Part("yoursign") TypedFile yoursign, Callback<SignImageUploadRepo> value);
-
 }

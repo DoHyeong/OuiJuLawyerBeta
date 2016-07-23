@@ -29,63 +29,61 @@ public class NaverClass {
         RestAdapter retrofit;
 
 
-public NaverClass(String type,String token){
+        public NaverClass(String type,String token){
 
-        this.token = token;
-        this.type = type;
-        initGetInfo();
+                this.token = token;
+                this.type = type;
+                initGetInfo();
 
 
 
         }
 
         void initGetInfo(){
-        retrofit = new RestAdapter.Builder()
-        .setEndpoint("http://ouijulawyer.azurewebsites.net")
-        .build();
+
+                retrofit = new RestAdapter.Builder()
+                .setEndpoint("http://ouijulawyer.azurewebsites.net")
+                .build();
 
 
-        NaverInfoService service = retrofit.create(NaverInfoService.class);
+                NaverInfoService service = retrofit.create(NaverInfoService.class);
 
-        NaverInfoRepo naverInfoRepo = service.listRepos("GetNaverUserInfo",this.type,this.token);
-        Log.d("a369", new Gson().toJson(naverInfoRepo));
-        name = naverInfoRepo.name;
-        id = naverInfoRepo.id;
-        birthday = naverInfoRepo.birthday;
-        resultcode = naverInfoRepo.resultcode;
-        message = naverInfoRepo.message;
+                NaverInfoRepo naverInfoRepo = service.listRepos("GetNaverUserInfo",this.type,this.token);
+                Log.d("a369", new Gson().toJson(naverInfoRepo));
+                name = naverInfoRepo.name;
+                id = naverInfoRepo.id;
+                birthday = naverInfoRepo.birthday;
+                resultcode = naverInfoRepo.resultcode;
+                message = naverInfoRepo.message;
 
-        OuijuGlobal.name = name;
-        OuijuGlobal.session = id;
-        OuijuGlobal.type  = "N";
+                OuijuGlobal.name = name;
+                OuijuGlobal.session = id;
+                OuijuGlobal.type  = "N";
 
         }
 
-public String naverLogin(){
+        public String naverLogin(){
         NaverLoginService service = retrofit.create(NaverLoginService.class);
 
-        NaverLoginRepo naverLoginRepo = service.listRepos("NaverLogin",this.id);
+                NaverLoginRepo naverLoginRepo = service.listRepos("NaverLogin",this.id);
 
-        if(naverLoginRepo.success == "0"){
-        return "fail";
-        }else{
-        return naverLoginRepo.session;
-        }
-
-
-
+                if(naverLoginRepo.success == "0"){
+                        return "fail";
+                }else{
+                  return naverLoginRepo.session;
+                }
 
         }
 
 
-public String getBirthday(){
+        public String getBirthday(){
         return birthday;
         }
 
 
-public String getName(){
+        public String getName(){
 
-        return  name;
+                return  name;
 
-}
         }
+ }
