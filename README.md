@@ -15,7 +15,7 @@
 
 <b>주요기능</b>
 * SNS oAuth로그인 지원 .
-* MS AZURE서버를 API서버로 관리.
+* MS AZURE서버를 API(REST)서버로 관리.
 * 다이얼로그 형태의 서명패드(서명을 이미지로 변환하는 기능).
 * 이미지로 변환된 계약서를 로컬에 저장하거나SNS등에 공유하는 시스템.
 * 관리자콘솔과 연계하여 사용가능. ([관리자콘솔 바로가기](http://ouijulawyer.azurewebsites.net/cms/))
