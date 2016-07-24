@@ -21,10 +21,12 @@
 * 관리자콘솔과 연계하여 사용가능. ([관리자콘솔 바로가기](http://ouijulawyer.azurewebsites.net/cms/))
 관리자콘솔 아이디: 이메일에 첨부하였음.
 
+
+<br />
+<br />
+![alt tag](http://ouijulawyer.azurewebsites.net/comehere.png)
+
 '
 <b>플레이스토어 주소</b>
 [https://play.google.com/store/apps/details?id=ouijulawyer.project.soma.ouijulawyerbeta](https://play.google.com/store/apps/details?id=ouijulawyer.project.soma.ouijulawyerbeta)
 '
-<br />
-<br />
-![alt tag](http://ouijulawyer.azurewebsites.net/comehere.png)
