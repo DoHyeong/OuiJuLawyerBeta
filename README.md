@@ -1,5 +1,7 @@
 # 외주변호사(OuiJuLawyerBeta)
-
+` 개인 서명파일등 중요 계약서부분 유출가능성이 있어, private로 제출하는점 양해부탁드립니다.`
+<br />
+<br />
 ![alt tag](http://ouijulawyer.azurewebsites.net/comehere.png)
 
 외주변호사 어플리케이션은 프리랜서 개발자와 디자이너를 위한 서비스로, <br />
