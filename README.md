@@ -12,7 +12,7 @@
 
 <b>앱 작동영상</b>
 <br />
-[![ouijulawyer](http://img.youtube.com/vi/6bQ746PWCzk/0.jpg)](https://www.youtube.com/watch?v=oH0-y7itL84 "ouijulawyer")
+[![ouijulawyer](http://img.youtube.com/vi/oH0-y7itL84/0.jpg)](https://www.youtube.com/watch?v=oH0-y7itL84 "ouijulawyer")
 
 <b>주요기능</b>
 * SNS oAuth로그인 지원 .
